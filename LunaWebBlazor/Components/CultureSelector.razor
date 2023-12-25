@@ -6,8 +6,7 @@
 @if (_cultures != null)
 {
     <div class="row">
-        <select class="form-select mb-2 selectpicker" @onchange="OnRequestCultureChanged">
-            <option>Select...</option>
+        <select class="form-select mb-2 selectpicker" @onchange="OnRequestCultureChanged" value="@_selectedCulture">
             @foreach (var culture in _cultures)
             {
                 <option value="@culture.Key">@culture.Value</option>
@@ -26,7 +25,7 @@
     protected override void OnInitialized()
     {
         _cultures = Configuration.GetSection("Cultures")
-            .GetChildren().OrderByDescending(s => s.Value).ToDictionary(x => x.Key, x => x.Value);
+            .GetChildren().ToDictionary(x => x.Key, x => x.Value);
     }
 
 

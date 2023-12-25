@@ -15,8 +15,8 @@ var app = builder.Build();
 
 var locale = new LocalizationHelper(builder.Configuration);
 
-CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru");
-CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("ru");
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en");
+CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
 
 #endregion
 
