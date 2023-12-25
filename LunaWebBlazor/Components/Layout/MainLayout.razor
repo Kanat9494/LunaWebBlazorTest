@@ -1,6 +1,49 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <img src="icons/home_icon.svg" />
+                            <span class="nav__name">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="/counter" class="nav__link">
+                            <img src="icons/home_icon.svg" />
+
+                            <span class="nav__name">About</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#skills" class="nav__link">
+                            <img src="icons/home_icon.svg" />
+
+                            <span class="nav__name">Skills</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#portfolio" class="nav__link">
+                            <img src="icons/home_icon.svg" />
+
+                            <span class="nav__name">Portfolio</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <img src="assets/img/perfil.png" alt="" class="nav__img">
+        </nav>
+    </header>
+
     <div class="sidebar">
         <NavMenu />
     </div>
@@ -11,52 +54,29 @@
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div> *@
 
-        <header class="header" id="header">
-            <nav class="nav container">
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item">
-                            <a href="#" class="nav__link">
-                                <img src="icons/home_icon.svg"/>
-                                <span class="nav__name">Home</span>
-                            </a>
-                        </li>
-
-                        <li class="nav__item">
-                            <a href="/counter" class="nav__link">
-                                <img src="icons/home_icon.svg" />
-
-                                <span class="nav__name">About</span>
-                            </a>
-                        </li>
-
-                        <li class="nav__item">
-                            <a href="#skills" class="nav__link">
-                                <img src="icons/home_icon.svg" />
-
-                                <span class="nav__name">Skills</span>
-                            </a>
-                        </li>
-
-                        <li class="nav__item">
-                            <a href="#portfolio" class="nav__link">
-                                <img src="icons/home_icon.svg" />
-
-                                <span class="nav__name">Portfolio</span>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </div>
-
-                <img src="assets/img/perfil.png" alt="" class="nav__img">
-            </nav>
-        </header>
+        
 
         <article class="content px-4">
             @Body
         </article>
+
+        @* <div class="horizontal-container">
+            <div>Элемент 1</div>
+            <div>Элемент 2</div>
+            <div>Элемент 3</div>
+        </div> *@
+
+        
+        @* <nav class="navbar fixed-bottom navbar-light bg-light">
+            <div class="horizontal-container">
+                <div>Элемент 1</div>
+                <div>Элемент 2</div>
+                <div>Элемент 3</div>
+            </div>
+        </nav> *@
     </main>
+
+    
 </div>
 
 <div id="blazor-error-ui">
