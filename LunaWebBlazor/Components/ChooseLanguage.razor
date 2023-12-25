@@ -1,0 +1,70 @@
+﻿@inject NavigationManager NavigationManager
+@inject IConfiguration Configuration
+@rendermode InteractiveServer
+
+
+@if (_cultures != null)
+{
+    <div class="row">
+        <select class="form-select mb-2 selectpicker" @onchange="OnRequestCultureChanged">
+            <option>Select...</option>
+            @foreach (var culture in _cultures)
+            {
+                <option value="@culture.Key">@culture.Value</option>
+            }
+        </select>
+    </div>
+
+    <button class="btn btn-danger" @onclick="TestBtn">Test</button>
+
+
+
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+}
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private string _selectedCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+    private Dictionary<string, string> _cultures;
+    private int currentCount = 0;
+
+
+    protected override void OnInitialized()
+    {
+        _cultures = Configuration.GetSection("Cultures")
+            .GetChildren().ToDictionary(x => x.Key, x => x.Value);
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    public void OnRequestCultureChanged(ChangeEventArgs args)
+    {
+        _selectedCulture = args.Value.ToString();
+        if (string.IsNullOrWhiteSpace(_selectedCulture))
+        {
+            return;
+        }
+        var uri = new Uri(NavigationManager.Uri)
+            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+        var query = $"?culture={Uri.EscapeDataString(_selectedCulture)}&" +
+            $"redirectUri={Uri.EscapeDataString(uri)}";
+
+        NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+    }
+
+    private void TestBtn()
+    {
+        _selectedCulture = "ky";
+        var uri = new Uri(NavigationManager.Uri)
+            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+
+        var query = $"?culture={Uri.EscapeUriString(_selectedCulture)}&redirectUri={Uri.UnescapeDataString(uri)}";
+
+        NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+    }
+}

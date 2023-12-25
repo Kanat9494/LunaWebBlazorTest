@@ -1,5 +1,3 @@
-using LunaWebBlazor.Components;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,8 +6,19 @@ builder.Services.AddRazorComponents()
 
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddControllers();
+
 
 var app = builder.Build();
+
+#region Localization
+
+var locale = new LocalizationHelper(builder.Configuration);
+
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru");
+CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("ru");
+
+#endregion
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -18,7 +27,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseStaticFiles();
+app.UseRequestLocalization(locale.GetLocalizationOptions());
 app.UseAntiforgery();
+
+app.MapControllers();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IStringLocalizer<Home> HomeLocalizer
 
 <PageTitle>Home</PageTitle>
 
@@ -6,10 +7,48 @@
 
 Welcome to your new app.
 
+<p>@HomeLocalizer["AddAdvertisement"]</p>
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+        <label class="h6 fw-bold">фыва</label>
+        <select class="form-select mb-2 selectpicker" @onchange="OnRequestCultureChanged">
+            <option value="-1">фыва</option>
+            @for (int i = 0; i < 4; i++)
+            {
+                <option>@i</option>
+            }
+        </select>
+    </div>
+</div>
+
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
 
 @code {
+    private string _selectedCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(1500);
+
+        var s = HomeLocalizer["AddAdvertisement"].Value.ToString();
+        Debug.WriteLine(s);
+    }
+
+
+    public void OnRequestCultureChanged(ChangeEventArgs args)
+    {
+        _selectedCulture = args.Value.ToString();
+        
+    }
+
+
+    private int currentCount = 0;
+    private void IncrementCount()
+    {
+        currentCount++;
     }
 }
