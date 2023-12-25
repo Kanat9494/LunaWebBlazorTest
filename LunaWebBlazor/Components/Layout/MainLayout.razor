@@ -1,21 +1,40 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
+<div class="page" >
 
-    <header class="header" id="header">
-        <nav class="nav container">
+    <div class="sidebar" >
+        <NavMenu />
+    </div>
+
+    <main style="overflow-y: hidden !important;">
+        <div class="top-row px-4">
+            <CultureSelector />
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        
+
+        <article class="content px-4">
+            @Body
+        </article>
+
+        
+    </main>
+
+    <div class="bottom-nav" style="overflow-y: hidden !important;">
+        <nav class="nav">
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item">
+                    <li class="nav__item" >
                         <a href="#" class="nav__link">
-                            <img src="icons/home_icon.svg" />
+                            <img src="icons/home_icon.svg" id="home-page" />
                             <span class="nav__name">Home</span>
                         </a>
                     </li>
 
-                    <li class="nav__item">
+                    <li class="nav__item" >
                         <a href="/counter" class="nav__link">
-                            <img src="icons/home_icon.svg" />
+                            <img src="icons/home_icon.svg" id="account-page" />
 
                             <span class="nav__name">About</span>
                         </a>
@@ -39,43 +58,8 @@
 
                 </ul>
             </div>
-
-            <img src="assets/img/perfil.png" alt="" class="nav__img">
         </nav>
-    </header>
-
-    <div class="sidebar">
-        <NavMenu />
     </div>
-
-    <main>
-        @* <div class="top-row px-4">
-            <CultureSelector />
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div> *@
-
-        
-
-        <article class="content px-4">
-            @Body
-        </article>
-
-        @* <div class="horizontal-container">
-            <div>Элемент 1</div>
-            <div>Элемент 2</div>
-            <div>Элемент 3</div>
-        </div> *@
-
-        
-        @* <nav class="navbar fixed-bottom navbar-light bg-light">
-            <div class="horizontal-container">
-                <div>Элемент 1</div>
-                <div>Элемент 2</div>
-                <div>Элемент 3</div>
-            </div>
-        </nav> *@
-    </main>
-
     
 </div>
 
